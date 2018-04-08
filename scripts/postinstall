@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+const insights = require('./helpers/insights')
+const debug = require('debug')('script:postinstall')
+
+insights.askPermission().then(() => {
+  insights.trackInstallAgent()
+  debug(process.env)
+})

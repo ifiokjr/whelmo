@@ -1,0 +1,6 @@
+package.json
+*.log
+*.lock
+# *.md
+**/node_modules/
+node_modules/

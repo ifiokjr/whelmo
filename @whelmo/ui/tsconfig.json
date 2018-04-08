@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "jsx": "react",
+    "declaration": true
+  },
+  "exclude": ["*.test.{ts,tsx}", "*.stories.{ts,tsx}", "lib"]
+}
