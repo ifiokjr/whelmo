@@ -1,6 +1,6 @@
 {
-  "lerna": "2.10.2",
-  "packages": ["@whelmo/*", "apps/*"],
+  "lerna": "2.10.1",
+  "packages": ["native", "web", "@whelmo/*"],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true

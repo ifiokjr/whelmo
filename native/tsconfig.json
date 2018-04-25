@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["dom", "es2015", "es2016"],
+    "target": "es2015",
+    "jsx": "preserve",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "importHelpers": true
+  },
+  "exclude": ["node_modules"]
+}
