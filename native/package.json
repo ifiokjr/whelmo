@@ -12,7 +12,11 @@
   "scripts": {
     "android": "react-native run-android",
     "android:release": "react-native run-android --variant=\"release\"",
+    "android:staging": "react-native run-android --variant=\"staging\"",
+    "cd": "cd /",
     "ios": "react-native run-ios",
+    "pod:install": "cd ios && bundle exec pod install --repo-update",
+    "pod:update": "cd ios && bundle exec pod update",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
