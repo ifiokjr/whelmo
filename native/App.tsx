@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import CodePush from 'react-native-code-push';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,6 +28,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+@CodePush()
 export default class App extends React.Component {
   public render() {
     return (

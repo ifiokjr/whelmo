@@ -1,0 +1,4 @@
+<resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">GkoYCZK7LmVfWxJBjLcj6cC5NNayB1sK3lypM</string>
+    <string name="app_name">Whelmo</string>
+</resources>
