@@ -59,9 +59,10 @@ target 'Whelmo' do
   pod 'RNI18n', :path => node_modules_path + '/react-native-i18n'
   pod 'RNSVG', :path => node_modules_path + '/react-native-svg'
   pod 'react-native-splash-screen', :path => node_modules_path + '/react-native-splash-screen'
-  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
-  pod 'RNShare', :path => '../node_modules/react-native-share'
-  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'RNKeychain', :path => node_modules_path + '/react-native-keychain'
+  pod 'RNShare', :path => node_modules_path + '/react-native-share'
+  pod 'CodePush', :path => node_modules_path + '/react-native-code-push'
+  pod 'react-native-config', :path => node_modules_path + '/react-native-config'
 
 end
 

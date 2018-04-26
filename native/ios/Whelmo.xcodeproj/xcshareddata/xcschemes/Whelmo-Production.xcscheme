@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;.env&quot; &gt; /tmp/envfile   # Use the relevant env file&#10;export APP_ENVIRONMENT=&quot;DEV&quot;">
+               scriptText = "echo &quot;.env.production&quot; &gt; /tmp/envfile   # Use the relevant env file&#10;export APP_ENVIRONMENT=&quot;PRODUCTION&quot;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
