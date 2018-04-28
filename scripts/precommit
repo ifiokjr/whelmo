@@ -90,7 +90,9 @@ const testFiles = files => {
   }
 }
 
-const files = gitDiffIndex()
+const files = gitDiffIndex().filter(file =>
+  /(\.jsx?|\.tsx?|package\.json)$/.test(file),
+)
 if (files.length === 0) {
   process.exit(0)
 }

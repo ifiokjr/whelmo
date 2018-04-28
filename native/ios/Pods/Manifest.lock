@@ -1,0 +1,373 @@
+PODS:
+  - boost-for-react-native (1.63.0)
+  - BoringSSL (10.0.2):
+    - BoringSSL/Implementation (= 10.0.2)
+    - BoringSSL/Interface (= 10.0.2)
+  - BoringSSL/Implementation (10.0.2):
+    - BoringSSL/Interface (= 10.0.2)
+  - BoringSSL/Interface (10.0.2)
+  - CodePush (5.3.2):
+    - CodePush/Base64 (= 5.3.2)
+    - CodePush/Core (= 5.3.2)
+    - CodePush/JWT (= 5.3.2)
+    - CodePush/SSZipArchive (= 5.3.2)
+    - React
+  - CodePush/Base64 (5.3.2):
+    - React
+  - CodePush/Core (5.3.2):
+    - React
+  - CodePush/JWT (5.3.2):
+    - React
+  - CodePush/SSZipArchive (5.3.2):
+    - React
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - DoubleConversion (1.1.5)
+  - Fabric (1.7.6)
+  - Firebase/Auth (4.13.0):
+    - Firebase/Core
+    - FirebaseAuth (= 4.6.1)
+  - Firebase/Core (4.13.0):
+    - FirebaseAnalytics (= 4.2.0)
+    - FirebaseCore (= 4.0.20)
+  - Firebase/Database (4.13.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.5)
+  - Firebase/DynamicLinks (4.13.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 2.3.2)
+  - Firebase/Firestore (4.13.0):
+    - Firebase/Core
+    - FirebaseFirestore (= 0.11.0)
+  - Firebase/Messaging (4.13.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.2.0)
+  - Firebase/Performance (4.13.0):
+    - Firebase/Core
+    - FirebasePerformance (= 1.1.3)
+  - Firebase/RemoteConfig (4.13.0):
+    - Firebase/Core
+    - FirebaseRemoteConfig (= 2.1.3)
+  - Firebase/Storage (4.13.0):
+    - Firebase/Core
+    - FirebaseStorage (= 2.2.0)
+  - FirebaseABTesting (1.0.0):
+    - FirebaseCore (~> 4.0)
+    - Protobuf (~> 3.1)
+  - FirebaseAnalytics (4.2.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseAuth (4.6.1):
+    - FirebaseAnalytics (~> 4.2)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (4.0.20):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseDatabase (4.1.5):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseDynamicLinks (2.3.2):
+    - FirebaseAnalytics (~> 4.0)
+  - FirebaseFirestore (0.11.0):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - gRPC-ProtoRPC (~> 1.0)
+    - leveldb-library (~> 1.18)
+    - Protobuf (~> 3.5)
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.2.0):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.5)
+  - FirebasePerformance (1.1.3):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseInstanceID (~> 2.0)
+    - FirebaseSwizzlingUtilities/ISASwizzling (~> 1.0)
+    - FirebaseSwizzlingUtilities/MethodSwizzling (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.5)
+  - FirebaseRemoteConfig (2.1.3):
+    - FirebaseABTesting (~> 1.0)
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - Protobuf (~> 3.5)
+  - FirebaseStorage (2.2.0):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseSwizzlingUtilities/ISASwizzling (1.0.1)
+  - FirebaseSwizzlingUtilities/MethodSwizzling (1.0.1):
+    - FirebaseCore (~> 4.0)
+  - Folly (2016.09.26.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.4)
+  - GoogleToolboxForMac/DebugUtils (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/Logger (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
+    - GoogleToolboxForMac/DebugUtils (= 2.1.4)
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
+  - gRPC (1.11.0):
+    - gRPC-RxLibrary (= 1.11.0)
+    - gRPC/Main (= 1.11.0)
+  - gRPC-Core (1.11.0):
+    - gRPC-Core/Implementation (= 1.11.0)
+    - gRPC-Core/Interface (= 1.11.0)
+  - gRPC-Core/Implementation (1.11.0):
+    - BoringSSL (~> 10.0)
+    - gRPC-Core/Interface (= 1.11.0)
+    - nanopb (~> 0.3)
+  - gRPC-Core/Interface (1.11.0)
+  - gRPC-ProtoRPC (1.11.0):
+    - gRPC (= 1.11.0)
+    - gRPC-RxLibrary (= 1.11.0)
+    - Protobuf (~> 3.0)
+  - gRPC-RxLibrary (1.11.0)
+  - gRPC/Main (1.11.0):
+    - gRPC-Core (= 1.11.0)
+    - gRPC-RxLibrary (= 1.11.0)
+  - GTMSessionFetcher/Core (1.1.15)
+  - leveldb-library (1.20)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Protobuf (3.5.0)
+  - React (0.55.3):
+    - React/Core (= 0.55.3)
+  - react-native-config (0.11.5):
+    - React
+  - react-native-splash-screen (3.0.6):
+    - React
+  - React/ART (0.55.3):
+    - React/Core
+  - React/Core (0.55.3):
+    - yoga (= 0.55.3.React)
+  - React/CxxBridge (0.55.3):
+    - Folly (= 2016.09.26.00)
+    - React/Core
+    - React/cxxreact
+  - React/cxxreact (0.55.3):
+    - boost-for-react-native (= 1.63.0)
+    - Folly (= 2016.09.26.00)
+    - React/jschelpers
+    - React/jsinspector
+  - React/DevSupport (0.55.3):
+    - React/Core
+    - React/RCTWebSocket
+  - React/fishhook (0.55.3)
+  - React/jschelpers (0.55.3):
+    - Folly (= 2016.09.26.00)
+    - React/PrivateDatabase
+  - React/jsinspector (0.55.3)
+  - React/PrivateDatabase (0.55.3)
+  - React/RCTActionSheet (0.55.3):
+    - React/Core
+  - React/RCTAnimation (0.55.3):
+    - React/Core
+  - React/RCTBlob (0.55.3):
+    - React/Core
+  - React/RCTCameraRoll (0.55.3):
+    - React/Core
+    - React/RCTImage
+  - React/RCTGeolocation (0.55.3):
+    - React/Core
+  - React/RCTImage (0.55.3):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTLinkingIOS (0.55.3):
+    - React/Core
+  - React/RCTNetwork (0.55.3):
+    - React/Core
+  - React/RCTPushNotification (0.55.3):
+    - React/Core
+  - React/RCTSettings (0.55.3):
+    - React/Core
+  - React/RCTText (0.55.3):
+    - React/Core
+  - React/RCTVibration (0.55.3):
+    - React/Core
+  - React/RCTWebSocket (0.55.3):
+    - React/Core
+    - React/fishhook
+    - React/RCTBlob
+  - React/tvOS (0.55.3):
+    - React/Core
+  - RNI18n (2.0.12):
+    - React
+  - RNKeychain (3.0.0-rc.3):
+    - React
+  - RNShare (1.0.27):
+    - React
+  - RNSVG (6.3.1):
+    - React
+  - RNVectorIcons (4.6.0):
+    - React
+  - yoga (0.55.3.React)
+
+DEPENDENCIES:
+  - CodePush (from `../node_modules/react-native-code-push`)
+  - Crashlytics (~> 3.10.1)
+  - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Fabric (~> 1.7.6)
+  - Firebase/Auth
+  - Firebase/Core
+  - Firebase/Database
+  - Firebase/DynamicLinks
+  - Firebase/Firestore
+  - Firebase/Messaging
+  - Firebase/Performance
+  - Firebase/RemoteConfig
+  - Firebase/Storage
+  - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
+  - react-native-config (from `../node_modules/react-native-config`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
+  - React/ART (from `../node_modules/react-native`)
+  - React/Core (from `../node_modules/react-native`)
+  - React/CxxBridge (from `../node_modules/react-native`)
+  - React/cxxreact (from `../node_modules/react-native`)
+  - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTActionSheet (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTBlob (from `../node_modules/react-native`)
+  - React/RCTCameraRoll (from `../node_modules/react-native`)
+  - React/RCTGeolocation (from `../node_modules/react-native`)
+  - React/RCTImage (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
+  - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTPushNotification (from `../node_modules/react-native`)
+  - React/RCTSettings (from `../node_modules/react-native`)
+  - React/RCTText (from `../node_modules/react-native`)
+  - React/RCTVibration (from `../node_modules/react-native`)
+  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - React/tvOS (from `../node_modules/react-native`)
+  - RNI18n (from `../node_modules/react-native-i18n`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
+  - RNShare (from `../node_modules/react-native-share`)
+  - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - boost-for-react-native
+    - BoringSSL
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseDynamicLinks
+    - FirebaseFirestore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebasePerformance
+    - FirebaseRemoteConfig
+    - FirebaseStorage
+    - FirebaseSwizzlingUtilities
+    - GoogleToolboxForMac
+    - gRPC
+    - gRPC-Core
+    - gRPC-ProtoRPC
+    - gRPC-RxLibrary
+    - GTMSessionFetcher
+    - leveldb-library
+    - nanopb
+    - Protobuf
+
+EXTERNAL SOURCES:
+  CodePush:
+    :path: "../node_modules/react-native-code-push"
+  DoubleConversion:
+    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  Folly:
+    :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  glog:
+    :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
+  React:
+    :path: "../node_modules/react-native"
+  react-native-config:
+    :path: "../node_modules/react-native-config"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
+  RNI18n:
+    :path: "../node_modules/react-native-i18n"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
+  RNShare:
+    :path: "../node_modules/react-native-share"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
+SPEC CHECKSUMS:
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  BoringSSL: 60dd24df4af296bf41d78e5841dbb95d75f88c0d
+  CodePush: af67b07310e4037ecd5c38f03c7a51c6350240b5
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
+  FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
+  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
+  FirebaseAuth: bf22cacf22c60ab454bf2636f556d8892b10b53f
+  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
+  FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
+  FirebaseDynamicLinks: 38b68641d24e78d0277a9205d988ce22875d5a25
+  FirebaseFirestore: e92a096ce80c7b4b905d4e9d41dbd944adc9d2a5
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  FirebaseMessaging: 75cdb862e86c30e0913a2ff307e48d49357c5b73
+  FirebasePerformance: 85bdc3f3d630deb629e85695fcab23364d68f5db
+  FirebaseRemoteConfig: 3e95fb7c072308492e85fa41d59d38b3d6fd2372
+  FirebaseStorage: 0c223481c8f89ed300cf1239ddd2d9833622c65f
+  FirebaseSwizzlingUtilities: 6006111d30248d2321ffac0231e246663e704ea3
+  Folly: 211775e49d8da0ca658aebc8eab89d642935755c
+  glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  gRPC: 70703dc9ba31c72341fc7f37745cc1c379edee96
+  gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
+  gRPC-ProtoRPC: bb5fddf3424aa4fad74d76736578a79fe40e244e
+  gRPC-RxLibrary: 26d53d1b1f306befd4ad4e15bd6de27839a82481
+  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
+  React: aa2040dbb6f317b95314968021bd2888816e03d5
+  react-native-config: 408003951fd9d8b1dfd7ebf535f67c315f44d823
+  react-native-splash-screen: 8e3f866dc79bfe533baeffd0a38c33f7a7eae7f8
+  RNI18n: db9be06a40336f04d136f24dd5de3f5eb9f3207c
+  RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
+  RNShare: 80d4472ab25e77d9f824cb8d49d7e85af91c66e0
+  RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
+  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
+  yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
+
+PODFILE CHECKSUM: fc006a959e5ab397779fb2fc33df3a0398582311
+
+COCOAPODS: 1.5.0

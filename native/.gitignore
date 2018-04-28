@@ -55,8 +55,5 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-# Pods
-ios/Pods
-
 # Secrets
 android-service-account.json
