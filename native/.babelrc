@@ -1,3 +1,9 @@
 {
-  "presets": ["react-native"]
+  "presets": ["react-native"],
+  "plugins": [
+    "transform-inline-environment-variables",
+    ["lodash", { "id": ["lodash", "recompose"] }],
+    "ramda",
+    "date-fns"
+  ]
 }
