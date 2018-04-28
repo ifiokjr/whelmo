@@ -120,6 +120,26 @@ android {
         resValue 'string', 'build_config_package', 'com.whelmo'
         multiDexEnabled true
     }
+
+    signingConfigs {
+        release {
+            if (project.hasProperty('WHELMO_RELEASE_STORE_FILE')) {
+                storeFile file(WHELMO_RELEASE_STORE_FILE)
+                storePassword WHELMO_RELEASE_STORE_PASSWORD
+                keyAlias WHELMO_RELEASE_KEY_ALIAS
+                keyPassword WHELMO_RELEASE_KEY_PASSWORD
+            }
+        }
+        staging {
+            if (project.hasProperty('WHELMO_STAGING_STORE_FILE')) {
+                storeFile file(WHELMO_STAGING_STORE_FILE)
+                storePassword WHELMO_STAGING_STORE_PASSWORD
+                keyAlias WHELMO_STAGING_KEY_ALIAS
+                keyPassword WHELMO_STAGING_KEY_PASSWORD
+            }
+        }
+    }
+
     splits {
         abi {
             reset()
@@ -135,12 +155,18 @@ android {
         }
         staging {
             applicationIdSuffix '.staging'
+            signingConfig signingConfigs.staging
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            manifestPlaceholders = [excludeSystemAlertWindowPermission: "true"]
             matchingFallbacks = ['debug', 'release']
         }
         release {
             applicationIdSuffix '.app'
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            manifestPlaceholders = [excludeSystemAlertWindowPermission: "true"]
         }
     }
     // applicationVariants are e.g. debug, release

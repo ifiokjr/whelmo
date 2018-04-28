@@ -57,3 +57,6 @@ buck-out/
 
 # Pods
 ios/Pods
+
+# Secrets
+android-service-account.json

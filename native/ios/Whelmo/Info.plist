@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CodePushDeploymentKey</key>
+	<string>h5OgbdCcK1DI4X_OCW0_RtHmi_ieryLv3gJ6G</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -36,7 +38,20 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Text-Bold.otf</string>
+		<string>SF-Pro-Text-Heavy.otf</string>
+		<string>SF-Pro-Text-Light.otf</string>
+		<string>SF-Pro-Text-Medium.otf</string>
+		<string>SF-Pro-Text-Regular.otf</string>
+		<string>SF-Pro-Text-Semibold.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -49,16 +64,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF-Pro-Text-Bold.otf</string>
-		<string>SF-Pro-Text-Heavy.otf</string>
-		<string>SF-Pro-Text-Light.otf</string>
-		<string>SF-Pro-Text-Medium.otf</string>
-		<string>SF-Pro-Text-Regular.otf</string>
-		<string>SF-Pro-Text-Semibold.otf</string>
-	</array>
-	<key>CodePushDeploymentKey</key>
-	<string>h5OgbdCcK1DI4X_OCW0_RtHmi_ieryLv3gJ6G</string>
 </dict>
 </plist>

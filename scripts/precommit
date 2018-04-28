@@ -42,10 +42,10 @@ const run = (command, args) => {
 }
 
 const formatFiles = files => {
-  const prettierFiles = files.filter(file => /(.jsx?$)|(.tsx?$)/.test(file))
+  const prettierFiles = files.filter(file => /(\.jsx|\.tsx?)$/.test(file))
   const packageJsonFiles = files.filter(file => file.includes('package.json'))
-  const eslintFiles = files.filter(file => /.js$/.test(file))
-  const tslintFiles = files.filter(file => /.tsx?$/.test(file))
+  const eslintFiles = files.filter(file => /\.js$/.test(file))
+  const tslintFiles = files.filter(file => /\.tsx?$/.test(file))
 
   if (prettierFiles.length) {
     run(
@@ -77,7 +77,7 @@ const formatFiles = files => {
   }
 }
 const testFiles = files => {
-  const jestTestFiles = files.filter(file => /(.jsx?|.tsx?)$/.test(file))
+  const jestTestFiles = files.filter(file => /(\.jsx?|\.tsx?)$/.test(file))
   if (jestTestFiles.length) {
     run(
       nodeModulesBin('jest'),

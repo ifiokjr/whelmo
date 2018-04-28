@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@types/next": "2.4.9",
-    "@types/react": "16.3.12",
-    "@types/react-native": "0.55.7",
+    "@types/react": "16.3.13",
+    "@types/react-native": "0.55.8",
     "@zeit/next-typescript": "0.1.1",
     "fork-ts-checker-webpack-plugin": "0.4.1",
     "next": "latest",
@@ -19,7 +19,6 @@
     "typescript": "2.8.3"
   },
   "devDependencies": {
-    "babel-plugin-react-native-web": "0.6.1",
-    "lerna": "2.11.0"
+    "babel-plugin-react-native-web": "0.6.1"
   }
 }
