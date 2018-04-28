@@ -5,6 +5,18 @@ import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.horcrux.svg.SvgPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import cl.json.RNSharePackage;
+import com.oblador.keychain.KeychainPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.microsoft.codepush.react.CodePush;
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -64,24 +76,35 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         @SuppressLint("MissingPermission")
         @Override
         protected List<ReactPackage> getPackages() {
-          return Arrays.<ReactPackage>asList(
-              new MainReactPackage(),
-            new ReactNativeConfigPackage(),
-              new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
-              new RNFirebasePackage(),
-              new RNFirebaseAnalyticsPackage(),
-              new RNFirebaseAuthPackage(),
-              new RNFirebaseCrashlyticsPackage(),
-              new RNFirebaseDatabasePackage(),
-              new RNFirebaseFirestorePackage(),
-              new RNFirebaseInstanceIdPackage(),
-              new RNFirebaseLinksPackage(),
-              new RNFirebaseMessagingPackage(),
-              new RNFirebaseNotificationsPackage(),
-              new RNFirebasePerformancePackage(),
-              new RNFirebaseRemoteConfigPackage(),
-              new RNFirebaseStoragePackage()
-          );
+            return Arrays.<ReactPackage>asList(
+                new MainReactPackage(),
+                new VectorIconsPackage(),
+                new SvgPackage(),
+                new SplashScreenReactPackage(),
+                new RNSharePackage(),
+                new KeychainPackage(),
+                new RNI18nPackage(),
+                new RNGestureHandlerPackage(),
+                new RNFirebasePackage(),
+                new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+                new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+                new AppCenterReactNativePackage(MainApplication.this),
+                new ReactNativeConfigPackage(),
+                new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
+                new RNFirebasePackage(),
+                new RNFirebaseAnalyticsPackage(),
+                new RNFirebaseAuthPackage(),
+                new RNFirebaseCrashlyticsPackage(),
+                new RNFirebaseDatabasePackage(),
+                new RNFirebaseFirestorePackage(),
+                new RNFirebaseInstanceIdPackage(),
+                new RNFirebaseLinksPackage(),
+                new RNFirebaseMessagingPackage(),
+                new RNFirebaseNotificationsPackage(),
+                new RNFirebasePerformancePackage(),
+                new RNFirebaseRemoteConfigPackage(),
+                new RNFirebaseStoragePackage()
+            );
         }
 
         @Override

@@ -21,6 +21,9 @@ target 'Whelmo' do
   pod 'Crashlytics', '~> 3.10.1'
 
   # Pods for Whelmo
+  pod 'AppCenter/Crashes', '~> 1.6.0'
+  pod 'AppCenter/Analytics', '~> 1.6.0'
+  pod 'AppCenterReactNativeShared', '~> 1.5.0'
 
   node_modules_path = '../node_modules'
   react_native_path = node_modules_path + '/react-native'
@@ -62,7 +65,7 @@ target 'Whelmo' do
   pod 'RNKeychain', :path => node_modules_path + '/react-native-keychain'
   pod 'RNShare', :path => node_modules_path + '/react-native-share'
   pod 'CodePush', :path => node_modules_path + '/react-native-code-push'
-  pod 'react-native-config', :path => node_modules_path + '/react-native-config'
+  # pod 'react-native-config', :path => node_modules_path + '/react-native-config'
 
 end
 

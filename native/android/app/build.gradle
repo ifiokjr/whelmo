@@ -185,7 +185,21 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-config')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-share')
+    implementation project(':react-native-keychain')
+    implementation project(':react-native-i18n')
+    implementation project(':react-native-gesture-handler')
+    compile(project(':react-native-firebase')) {
+        transitive = false
+    }
+    implementation project(':react-native-code-push')
+    implementation project(':appcenter-crashes')
+    implementation project(':appcenter-analytics')
+    implementation project(':appcenter')
+    implementation project(':react-native-config')
     implementation(project(':react-native-firebase')) {
         transitive = false
     }
