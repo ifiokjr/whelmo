@@ -1,0 +1,31 @@
+platform :ios do
+  desc "Set up push notification development certificate"
+  lane :setup_push_notification_development do
+    get_push_certificate(
+      force: true, # create a new profile, even if the old one is still valid
+      development: true,
+      save_private_key: true,
+      p12_password: ENV["P12_PASSWORD"],
+      output_path: 'secrets',
+      new_profile: proc do |profile_path| # this block gets called when a new profile was generated
+        puts profile_path # the absolute path to the new PEM file
+        # insert the code to upload the PEM file to the server
+      end
+    )
+  end
+
+  desc "Set up push notification production certificate"
+  lane :setup_push_notification_production do
+    get_push_certificate(
+      force: true, # create a new profile, even if the old one is still valid
+      app_identifier: "com.whelmo.app", # optional app identifier,
+      save_private_key: true,
+      p12_password: ENV["P12_PASSWORD"],
+      output_path: 'secrets',
+      new_profile: proc do |profile_path| # this block gets called when a new profile was generated
+        puts profile_path # the absolute path to the new PEM file
+        # insert the code to upload the PEM file to the server
+      end
+    )
+  end
+end

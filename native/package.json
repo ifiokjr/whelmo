@@ -10,9 +10,9 @@
     ]
   },
   "scripts": {
-    "android": "react-native run-android",
-    "android:release": "react-native run-android --variant=\"release\"",
-    "android:staging": "react-native run-android --variant=\"staging\"",
+    "android": "react-native run-android --appId com.whelmo.dev",
+    "android:release": "react-native run-android --appId com.whelmo.app --variant=release",
+    "android:staging": "react-native run-android --appId com.whelmo.staging --variant=staging",
     "cd": "cd /",
     "codepush:android:prod": "appcenter codepush release-react -a KickJump/Whelmo-Android -m -d Production",
     "codepush:android:staging": "appcenter codepush release-react -a KickJump/Whelmo-Android -m -d Staging",

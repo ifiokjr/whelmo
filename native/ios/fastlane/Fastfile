@@ -15,6 +15,8 @@
 
 default_platform(:ios)
 
+import "./DevFastfile"
+
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
@@ -22,4 +24,6 @@ platform :ios do
     build_app(workspace: "Whelmo.xcworkspace", scheme: "Whelmo")
     upload_to_testflight
   end
+
+
 end
