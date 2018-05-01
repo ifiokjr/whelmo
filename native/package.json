@@ -24,16 +24,19 @@
     "pod:install": "cd ios && bundle exec pod install --repo-update",
     "pod:update": "cd ios && bundle exec pod update",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "tslint -c ../tslint.json -p tsconfig.json"
   },
   "dependencies": {
     "appcenter": "1.5.0",
     "appcenter-analytics": "1.5.0",
     "appcenter-crashes": "1.5.0",
     "date-fns": "2.0.0-alpha.7",
+    "es6-symbol": "3.1.1",
+    "intl": "1.2.5",
     "lodash": "4.17.10",
     "mobx": "4.2.0",
-    "mobx-react": "5.0.0",
+    "mobx-react": "5.1.2",
     "native-base": "2.4.3",
     "ramda": "0.25.0",
     "react": "16.3.2",
@@ -43,6 +46,7 @@
     "react-native-config": "0.11.5",
     "react-native-firebase": "4.0.6",
     "react-native-gesture-handler": "1.0.0-alpha.43",
+    "react-native-google-analytics-bridge": "5.6.3",
     "react-native-i18n": "2.0.12",
     "react-native-keyboard-manager": "4.0.13-7",
     "react-native-keychain": "3.0.0-rc.3",
@@ -54,9 +58,10 @@
     "tslib": "1.9.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "6.2.0",
     "@types/ramda": "types/npm-ramda#dist",
     "@types/react": "16.3.13",
-    "@types/react-native": "0.55.8",
+    "@types/react-native": "0.55.10",
     "@types/react-navigation": "1.5.9",
     "babel-jest": "22.4.3",
     "babel-plugin-date-fns": "0.1.0",

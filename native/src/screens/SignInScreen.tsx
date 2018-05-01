@@ -2,6 +2,7 @@ import { inject } from 'mobx-react/native';
 import React, { Component } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
+import { screenRoutes } from '../constants';
 import { UserStore } from '../stores';
 
 const styles = StyleSheet.create({
@@ -32,8 +33,8 @@ class SignInScreen extends Component<SignInScreenProps> {
 
   private signInAsync = async () => {
     try {
-      const user = await this.props.userStore.signInAnonymously();
-      this.props.navigation.navigate('App');
+      await this.props.userStore.signInAnonymously();
+      this.props.navigation.navigate(screenRoutes.Tabs);
     } catch (e) {}
   };
 }

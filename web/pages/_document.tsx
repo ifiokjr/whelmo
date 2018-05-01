@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import { Context } from 'next';
 import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';

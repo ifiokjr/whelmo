@@ -1,12 +1,21 @@
 import { action, observable } from 'mobx';
 import firebase, { RNFirebase } from 'react-native-firebase';
+import { collection } from '../constants';
+import { RootStoreInterface, UserStoreInterface } from '../types';
 import { noop } from '../utils';
 
 const auth = firebase.auth();
+const firestore = firebase.firestore();
 
-class UserStore {
+class UserStore implements UserStoreInterface {
+  public stores: RootStoreInterface;
   @observable public user = auth.currentUser;
   @observable public loading = false;
+  @observable public profile: object = {};
+
+  constructor(stores: RootStoreInterface) {
+    this.stores = stores;
+  }
 
   public stopListeningForUserChanges: () => void = noop;
   public stopListeningForAuthChanges: () => void = noop;
@@ -26,7 +35,7 @@ class UserStore {
   @action
   public updateUser = (user: RNFirebase.User | null) => {
     this.user = user;
-    this.loading = false;
+    this.setLoading(false);
   };
 
   @action
@@ -34,12 +43,33 @@ class UserStore {
     this.loading = loading;
   };
 
+  @action
+  public setProfile(data: object) {
+    this.profile = data;
+  }
+
   public signOut = async () => {
     await auth.signOut();
   };
 
   public signInAnonymously = async () => {
     await auth.signInAnonymouslyAndRetrieveData();
+  };
+
+  public loadProfile = async () => {
+    if (!this.user) {
+      return;
+    }
+    const { uid } = this.user;
+    const docRef = firestore.collection(collection.USERS).doc(uid);
+    docRef.onSnapshot(async snap => {
+      if (snap.exists) {
+        this.setProfile(snap.data() || {});
+      } else {
+        docRef.set({});
+        this.setProfile({});
+      }
+    });
   };
 }
 
