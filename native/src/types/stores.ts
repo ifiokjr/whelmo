@@ -1,13 +1,13 @@
 import { RNFirebase } from 'react-native-firebase';
 
-export interface RootStoreInterface {
-  userStore: UserStoreInterface;
+export interface IRootStore {
+  authStore: IAuthStore;
 }
 
 export type UserType = RNFirebase.User | null;
 
-export interface UserStoreInterface {
-  stores: RootStoreInterface;
+export interface IAuthStore {
+  stores: IRootStore;
   user: UserType;
   loading: boolean;
   stopListeningForUserChanges: () => void;

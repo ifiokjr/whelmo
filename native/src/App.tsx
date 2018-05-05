@@ -14,7 +14,7 @@ configure({ enforceActions: 'strict' });
 export default class App extends React.Component {
   constructor(props: {}) {
     super(props);
-    rootStore.userStore.listenForAuthChanges();
+    rootStore.authStore.listenForAuthChanges();
     this.setup().catch(noop);
   }
 
@@ -25,7 +25,7 @@ export default class App extends React.Component {
   }
 
   public componentWillUnmount() {
-    rootStore.userStore.stopListeningForAuthChanges();
+    rootStore.authStore.stopListeningForAuthChanges();
   }
 
   public render() {

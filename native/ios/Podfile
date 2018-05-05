@@ -67,6 +67,8 @@ target 'Whelmo' do
   pod 'CodePush', :path => node_modules_path + '/react-native-code-push'
   pod 'react-native-google-analytics-bridge', :path => node_modules_path + '/react-native-google-analytics-bridge'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
 end
 
 post_install do |installer|

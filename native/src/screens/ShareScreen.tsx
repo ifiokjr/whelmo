@@ -2,7 +2,7 @@ import { inject } from 'mobx-react/native';
 import React, { Component } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
-import { UserStore } from '../stores';
+import { AuthStore } from '../stores';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
 });
 
 interface HomeScreenProps extends NavigationInjectedProps {
-  userStore: UserStore;
+  authStore: AuthStore;
 }
 
-@inject('userStore')
+@inject('authStore')
 class HomeScreen extends Component<HomeScreenProps> {
   public static navigationOptions = {
     title: 'Welcome to the app!',
@@ -37,7 +37,7 @@ class HomeScreen extends Component<HomeScreenProps> {
 
   private signOutAsync = async () => {
     try {
-      await this.props.userStore.signOut();
+      await this.props.authStore.signOut();
       this.props.navigation.navigate('Auth');
     } catch (e) {}
   };

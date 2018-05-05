@@ -7,12 +7,12 @@ export interface NotificationSetting {
 }
 
 export interface Name {
-  firstName: string;
-  lastName: string;
-  displayName: string;
+  first: string;
+  last: string;
+  display: string;
 }
 
-export interface Settings {
+export interface IUser {
   username: string;
   name: Name;
   followers: string[];

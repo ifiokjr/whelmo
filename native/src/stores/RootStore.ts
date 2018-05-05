@@ -1,11 +1,11 @@
-import { RootStoreInterface } from '../types';
-import UserStore from './UserStore';
+import { IRootStore } from '../types';
+import AuthStore from './AuthStore';
 
-class RootStore implements RootStoreInterface {
-  public userStore: UserStore;
+class RootStore implements IRootStore {
+  public authStore: AuthStore;
 
   constructor() {
-    this.userStore = new UserStore(this);
+    this.authStore = new AuthStore(this);
   }
 }
 

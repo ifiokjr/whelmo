@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { screenRoutes } from '../constants';
-import { UserStore } from '../stores';
+import { AuthStore } from '../stores';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
 });
 
 interface SignInScreenProps extends NavigationInjectedProps {
-  userStore: UserStore;
+  authStore: AuthStore;
 }
 
-@inject('userStore')
+@inject('authStore')
 class SignInScreen extends Component<SignInScreenProps> {
   public static navigationOptions = {
     title: 'Login Screen',
@@ -33,7 +33,7 @@ class SignInScreen extends Component<SignInScreenProps> {
 
   private signInAsync = async () => {
     try {
-      await this.props.userStore.signInAnonymously();
+      await this.props.authStore.signInAnonymously();
       this.props.navigation.navigate(screenRoutes.Tabs);
     } catch (e) {}
   };

@@ -16,9 +16,14 @@ export interface Attachment {
  *
  * TODO: How do questions fit into this. If I see something I'm unsure of how do I ask the community for help in answering this. Are questions fundamentally different from notes or are they just an augmentation on top of notes
  */
-export interface NoteInterface {
+export interface INote {
   /**
    * Notes can be standalone or can the attached to a url, another note an object within a note, an image, a URL etc...
    */
   attachedTo: string;
+
+  /**
+   * The text in the note.
+   */
+  message: string;
 }

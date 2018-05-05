@@ -1,19 +1,19 @@
 import { action, observable } from 'mobx';
 import firebase, { RNFirebase } from 'react-native-firebase';
 import { collection } from '../constants';
-import { RootStoreInterface, UserStoreInterface } from '../types';
+import { IAuthStore, IRootStore } from '../types';
 import { noop } from '../utils';
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-class UserStore implements UserStoreInterface {
-  public stores: RootStoreInterface;
+class AuthStore implements IAuthStore {
+  public stores: IRootStore;
   @observable public user = auth.currentUser;
   @observable public loading = false;
   @observable public profile: object = {};
 
-  constructor(stores: RootStoreInterface) {
+  constructor(stores: IRootStore) {
     this.stores = stores;
   }
 
@@ -73,4 +73,4 @@ class UserStore implements UserStoreInterface {
   };
 }
 
-export default UserStore;
+export default AuthStore;

@@ -1,3 +1,3 @@
-export { NotificationTypes, Settings, NotificationSetting } from './user';
+export { NotificationTypes, IUser, NotificationSetting } from './user';
 export { Action } from './action';
-export { Attachment, AttachmentType, NoteInterface } from './note';
+export { Attachment, AttachmentType, INote } from './note';
