@@ -1,3 +1,5 @@
+import { ITimeStamp } from './base';
+
 export type NotificationTypes = 'email' | 'sms' | 'push';
 
 export interface NotificationSetting {
@@ -12,12 +14,20 @@ export interface Name {
   display: string;
 }
 
-export interface IUser {
+export interface IUserAccount extends ITimeStamp {
+  id: string;
   username: string;
   name: Name;
   followers: string[];
+  following: string[];
+  followerCount: number;
+  followingCount: number;
   about: string;
   verified: boolean;
   notificationSettings: NotificationSetting[];
   notificationTokens: string[]; // Currently every device they accept notifications.
+  image: {
+    url: string;
+    preview: string;
+  };
 }

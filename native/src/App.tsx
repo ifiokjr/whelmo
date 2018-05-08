@@ -1,11 +1,13 @@
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react/native';
-import { getTheme, StyleProvider, variables } from 'native-base';
+import { StyleProvider } from 'native-base';
 import * as React from 'react';
 import CodePush from 'react-native-code-push';
 import Navigator from './Navigator';
 import { firebaseSettings } from './setup';
 import rootStore from './stores';
+import getTheme from './theme/components';
+import variables from './theme/variables/commonColor';
 import { noop } from './utils';
 
 configure({ enforceActions: 'strict' });

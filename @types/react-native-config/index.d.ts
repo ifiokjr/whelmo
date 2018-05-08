@@ -5,6 +5,8 @@
 declare module 'react-native-config' {
   interface Config {
     readonly CODEPUSH_IOS: string;
+    readonly DEFAULT_PROFILE_IMAGE_100: string;
+    readonly DEFAULT_PROFILE_IMAGE_640: string;
   }
 
   const config: Config;

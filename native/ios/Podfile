@@ -6,7 +6,7 @@ target 'Whelmo' do
   # use_frameworks!
 
   # Firebase
-  pod 'Firebase/Core'
+  pod 'Firebase/Core', '~> 4.13.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/DynamicLinks'
@@ -68,6 +68,12 @@ target 'Whelmo' do
   pod 'react-native-google-analytics-bridge', :path => node_modules_path + '/react-native-google-analytics-bridge'
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'react-native-blur', :path => '../node_modules/react-native-blur'
+
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 
 end
 

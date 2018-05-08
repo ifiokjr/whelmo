@@ -1,3 +1,6 @@
+import { ITimeStamp } from './base';
+import { IUserAccount } from './user';
+
 export enum AttachmentType {
   URL = 'url',
   Image = 'image',
@@ -16,7 +19,8 @@ export interface Attachment {
  *
  * TODO: How do questions fit into this. If I see something I'm unsure of how do I ask the community for help in answering this. Are questions fundamentally different from notes or are they just an augmentation on top of notes
  */
-export interface INote {
+export interface INote extends ITimeStamp {
+  id: string;
   /**
    * Notes can be standalone or can the attached to a url, another note an object within a note, an image, a URL etc...
    */
@@ -26,4 +30,13 @@ export interface INote {
    * The text in the note.
    */
   message: string;
+
+  /**
+   * The uid of the notes creator
+   */
+  ownerId: string;
+}
+
+export interface INotePopulated extends INote {
+  user: IUserAccount;
 }

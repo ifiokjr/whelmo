@@ -1,17 +1,14 @@
 import { action, observable } from 'mobx';
 import firebase, { RNFirebase } from 'react-native-firebase';
-import { collection } from '../constants';
 import { IAuthStore, IRootStore } from '../types';
 import { noop } from '../utils';
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
 
 class AuthStore implements IAuthStore {
   public stores: IRootStore;
   @observable public user = auth.currentUser;
   @observable public loading = false;
-  @observable public profile: object = {};
 
   constructor(stores: IRootStore) {
     this.stores = stores;
@@ -43,33 +40,12 @@ class AuthStore implements IAuthStore {
     this.loading = loading;
   };
 
-  @action
-  public setProfile(data: object) {
-    this.profile = data;
-  }
-
   public signOut = async () => {
     await auth.signOut();
   };
 
   public signInAnonymously = async () => {
     await auth.signInAnonymouslyAndRetrieveData();
-  };
-
-  public loadProfile = async () => {
-    if (!this.user) {
-      return;
-    }
-    const { uid } = this.user;
-    const docRef = firestore.collection(collection.USERS).doc(uid);
-    docRef.onSnapshot(async snap => {
-      if (snap.exists) {
-        this.setProfile(snap.data() || {});
-      } else {
-        docRef.set({});
-        this.setProfile({});
-      }
-    });
   };
 }
 

@@ -7,8 +7,10 @@
   "repository": "https://github.com/kickjump/whelmo/@whelmo/ui",
   "version": "1.0.0-alpha.1",
   "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "build:watch": "npm run build && tsc -p tsconfig.json -w ",
     "build-storybook": "build-storybook",
     "lint:ts": "tslint --project .",
     "storybook": "start-storybook -p 6006",

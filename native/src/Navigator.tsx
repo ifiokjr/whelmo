@@ -2,6 +2,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import {
+  HeaderMode,
   NavigationTabScreenOptions,
   StackNavigator,
   SwitchNavigator,
@@ -18,13 +19,31 @@ import {
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
-
-const HomeStack = StackNavigator({ [screenRoutes.Home]: HomeScreen });
-const AuthStack = StackNavigator({ [screenRoutes.SignIn]: SignInScreen });
-const ShareStack = StackNavigator({ [screenRoutes.Share]: ShareScreen });
-const ProfileStack = StackNavigator({
-  [screenRoutes.ProfileScreen]: ProfileScreen,
-});
+const headerMode: HeaderMode = 'none';
+const defaultNavigatorOptions = {
+  headerMode,
+  cardStyle: {
+    backgroundColor: 'white',
+  },
+};
+const HomeStack = StackNavigator(
+  { [screenRoutes.Home]: HomeScreen },
+  defaultNavigatorOptions,
+);
+const AuthStack = StackNavigator(
+  { [screenRoutes.SignIn]: SignInScreen },
+  defaultNavigatorOptions,
+);
+const ShareStack = StackNavigator(
+  { [screenRoutes.Share]: ShareScreen },
+  defaultNavigatorOptions,
+);
+const ProfileStack = StackNavigator(
+  {
+    [screenRoutes.ProfileScreen]: ProfileScreen,
+  },
+  defaultNavigatorOptions,
+);
 
 const HomeTabs = TabNavigator(
   {
@@ -40,7 +59,7 @@ const HomeTabs = TabNavigator(
       screen: ShareStack,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="camera" color={tintColor as string} size={25} />
+          <Icon name="trending-up" color={tintColor as string} size={25} />
         ),
       } as NavigationTabScreenOptions,
     },

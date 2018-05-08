@@ -13,6 +13,8 @@ PODS:
   - BoringSSL/Implementation (10.0.2):
     - BoringSSL/Interface (= 10.0.2)
   - BoringSSL/Interface (10.0.2)
+  - BVLinearGradient (2.4.0):
+    - React
   - CodePush (5.3.2):
     - CodePush/Base64 (= 5.3.2)
     - CodePush/Core (= 5.3.2)
@@ -161,6 +163,8 @@ PODS:
   - Protobuf (3.5.0)
   - React (0.55.3):
     - React/Core (= 0.55.3)
+  - react-native-blur (0.8.0):
+    - React
   - react-native-camera (1.1.2):
     - React
     - react-native-camera/RCT (= 1.1.2)
@@ -169,6 +173,8 @@ PODS:
     - React
   - react-native-camera/RN (1.1.2):
     - React
+  - react-native-fetch-blob (0.10.6):
+    - React/Core
   - react-native-google-analytics-bridge (5.6.3):
     - react-native-google-analytics-bridge/Core (= 5.6.3)
   - react-native-google-analytics-bridge/Core (5.6.3):
@@ -245,6 +251,7 @@ DEPENDENCIES:
   - AppCenter/Analytics (~> 1.6.0)
   - AppCenter/Crashes (~> 1.6.0)
   - AppCenterReactNativeShared (~> 1.5.0)
+  - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - Crashlytics (~> 3.10.1)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -260,7 +267,9 @@ DEPENDENCIES:
   - Firebase/Storage
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
+  - react-native-blur (from `../node_modules/react-native-blur`)
   - react-native-camera (from `../node_modules/react-native-camera`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-google-analytics-bridge (from `../node_modules/react-native-google-analytics-bridge`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React/ART (from `../node_modules/react-native`)
@@ -322,6 +331,8 @@ SPEC REPOS:
     - Protobuf
 
 EXTERNAL SOURCES:
+  BVLinearGradient:
+    :path: "../node_modules/react-native-linear-gradient"
   CodePush:
     :path: "../node_modules/react-native-code-push"
   DoubleConversion:
@@ -332,8 +343,12 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-blur:
+    :path: "../node_modules/react-native-blur"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-fetch-blob:
+    :path: "../node_modules/react-native-fetch-blob"
   react-native-google-analytics-bridge:
     :path: "../node_modules/react-native-google-analytics-bridge"
   react-native-splash-screen:
@@ -356,6 +371,7 @@ SPEC CHECKSUMS:
   AppCenterReactNativeShared: fac1cabd1f76cc2f7019a53a58eaae60734a68bd
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BoringSSL: 60dd24df4af296bf41d78e5841dbb95d75f88c0d
+  BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
   CodePush: af67b07310e4037ecd5c38f03c7a51c6350240b5
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
@@ -386,7 +402,9 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   React: aa2040dbb6f317b95314968021bd2888816e03d5
+  react-native-blur: c35c1f6c2c76db7108bde7ed343bd2b01d64e0c0
   react-native-camera: ab22041dcf0403d88f2ae4b9ea3ed2644e680423
+  react-native-fetch-blob: 63394b1d7b0781547b3e4463b3195790177b1222
   react-native-google-analytics-bridge: 359c98813e0422d560ab7537531eeb1a6ff7a6fd
   react-native-splash-screen: 8e3f866dc79bfe533baeffd0a38c33f7a7eae7f8
   RNI18n: db9be06a40336f04d136f24dd5de3f5eb9f3207c
@@ -396,6 +414,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 0b1f3f8a33fd7e31ff3437afd84fd61d29653dcf
+PODFILE CHECKSUM: 363792780040e4450e252b593fdd2dd62a1febb0
 
 COCOAPODS: 1.5.0

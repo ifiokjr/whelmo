@@ -4,6 +4,9 @@
     "rootDir": "src",
     "outDir": "lib",
     "jsx": "react",
+    "lib": ["dom", "es2015", "es2016"],
+    "target": "es5",
+    "moduleResolution": "node",
     "declaration": true
   },
   "exclude": ["*.test.{ts,tsx}", "*.stories.{ts,tsx}", "lib"]

@@ -5,7 +5,7 @@ import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationInjectedProps } from 'react-navigation';
 import { screenRoutes, stackRoutes } from '../constants';
-import { AuthStore } from '../stores';
+import stores, { AuthStore } from '../stores';
 import { UserType } from '../types';
 
 const styles = StyleSheet.create({
@@ -27,28 +27,20 @@ class AppLoadingScreen extends Component<AppLoadingScreenProps> {
     this.bootstrap();
   }
 
-  private navigate(user: UserType) {
-    this.props.navigation.navigate(user ? screenRoutes.Tabs : stackRoutes.Auth);
+  private async navigate(user: UserType) {
+    if (user) {
+      await stores.initAfterAuth();
+      this.props.navigation.navigate(screenRoutes.Tabs);
+    } else {
+      this.props.navigation.navigate(stackRoutes.Auth);
+    }
     SplashScreen.hide();
   }
 
   // Fetch the token from storage then navigate to our appropriate place
   public bootstrap = () => {
-    // const { loading, user } = this.props.authStore;
     const { authStore } = this.props;
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
     when(() => !authStore.loading, () => this.navigate(authStore.user));
-    // if (loading) {
-    //   const dispose = observe(this.props.authStore, 'loading', change => {
-    //     if (change.newValue === false) {
-    //       this.navigate(this.props.authStore.user);
-    //       dispose();
-    //     }
-    //   });
-    // } else {
-    //   this.navigate(user);
-    // }
   };
 
   // Render any loading content that you like here

@@ -120,6 +120,8 @@ android {
         }
         resValue 'string', 'build_config_package', 'com.whelmo'
         multiDexEnabled true
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
     }
 
     signingConfigs {
@@ -186,6 +188,9 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-blur')
+    compile project(':react-native-linear-gradient')
     implementation(project(':react-native-camera')) {
         exclude group: 'com.google.android.gms';
         exclude group: 'com.android.support';
