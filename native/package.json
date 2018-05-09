@@ -48,14 +48,14 @@
     "native-base": "2.4.3",
     "react": "16.3.2",
     "react-intl": "2.4.0",
-    "react-native": "0.55.3",
+    "react-native": "0.55.4",
     "react-native-autocomplete-input": "3.5.0",
     "react-native-blur": "3.2.2",
     "react-native-camera": "1.1.2",
-    "react-native-code-push": "5.3.2",
+    "react-native-code-push": "5.3.3",
     "react-native-config": "0.11.5",
     "react-native-fetch-blob": "0.10.8",
-    "react-native-firebase": "4.0.7",
+    "react-native-firebase": "4.1.0",
     "react-native-gesture-handler": "1.0.0-alpha.43",
     "react-native-google-analytics-bridge": "5.6.3",
     "react-native-i18n": "2.0.12",
@@ -74,10 +74,10 @@
   "devDependencies": {
     "@commitlint/cli": "6.2.0",
     "@types/crypto-js": "3.1.39",
-    "@types/react": "16.3.13",
+    "@types/react": "16.3.14",
     "@types/react-native": "0.55.12",
     "@types/react-native-fetch-blob": "0.10.4",
-    "@types/react-navigation": "1.5.10",
+    "@types/react-navigation": "1.5.11",
     "babel-jest": "22.4.3",
     "babel-plugin-date-fns": "0.1.0",
     "babel-plugin-lodash": "3.3.2",
@@ -89,7 +89,9 @@
     "jest": "22.4.3",
     "react-native-typescript-transformer": "1.2.5",
     "react-test-renderer": "16.3.2",
-    "ts-jest": "22.4.5"
+    "ts-jest": "22.4.5",
+    "tslint-eslint-rules": "5.2.0",
+    "tslint-react": "3.6.0"
   },
   "jest": {
     "preset": "react-native"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="splashBackground" type="color">#00AAFF</item>
+    <color name="primary_dark">#00AAFF</color>
     <item name="colorAccent" type="color">#00AAFF</item>
 </resources>

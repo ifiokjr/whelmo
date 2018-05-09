@@ -6,6 +6,7 @@ PODS:
     - AppCenter/Core
   - AppCenterReactNativeShared (1.5.0):
     - AppCenter/Core (= 1.6.0)
+  - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
   - BoringSSL (10.0.2):
     - BoringSSL/Implementation (= 10.0.2)
@@ -15,20 +16,11 @@ PODS:
   - BoringSSL/Interface (10.0.2)
   - BVLinearGradient (2.4.0):
     - React
-  - CodePush (5.3.2):
-    - CodePush/Base64 (= 5.3.2)
-    - CodePush/Core (= 5.3.2)
-    - CodePush/JWT (= 5.3.2)
-    - CodePush/SSZipArchive (= 5.3.2)
+  - CodePush (5.3.3):
+    - Base64 (~> 1.1)
+    - JWT (~> 3.0.0-beta.7)
     - React
-  - CodePush/Base64 (5.3.2):
-    - React
-  - CodePush/Core (5.3.2):
-    - React
-  - CodePush/JWT (5.3.2):
-    - React
-  - CodePush/SSZipArchive (5.3.2):
-    - React
+    - SSZipArchive (~> 2.1)
   - Crashlytics (3.10.1):
     - Fabric (~> 1.7.5)
   - DoubleConversion (1.1.5)
@@ -154,6 +146,8 @@ PODS:
     - gRPC-Core (= 1.11.0)
     - gRPC-RxLibrary (= 1.11.0)
   - GTMSessionFetcher/Core (1.1.15)
+  - JWT (3.0.0-beta.8):
+    - Base64 (~> 1.1.2)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -161,8 +155,8 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.5.0)
-  - React (0.55.3):
-    - React/Core (= 0.55.3)
+  - React (0.55.4):
+    - React/Core (= 0.55.4)
   - react-native-blur (0.8.0):
     - React
   - react-native-camera (1.1.2):
@@ -181,59 +175,59 @@ PODS:
     - React
   - react-native-splash-screen (3.0.6):
     - React
-  - React/ART (0.55.3):
+  - React/ART (0.55.4):
     - React/Core
-  - React/Core (0.55.3):
-    - yoga (= 0.55.3.React)
-  - React/CxxBridge (0.55.3):
+  - React/Core (0.55.4):
+    - yoga (= 0.55.4.React)
+  - React/CxxBridge (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.55.3):
+  - React/cxxreact (0.55.4):
     - boost-for-react-native (= 1.63.0)
     - Folly (= 2016.09.26.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.55.3):
+  - React/DevSupport (0.55.4):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.55.3)
-  - React/jschelpers (0.55.3):
+  - React/fishhook (0.55.4)
+  - React/jschelpers (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.55.3)
-  - React/PrivateDatabase (0.55.3)
-  - React/RCTActionSheet (0.55.3):
+  - React/jsinspector (0.55.4)
+  - React/PrivateDatabase (0.55.4)
+  - React/RCTActionSheet (0.55.4):
     - React/Core
-  - React/RCTAnimation (0.55.3):
+  - React/RCTAnimation (0.55.4):
     - React/Core
-  - React/RCTBlob (0.55.3):
+  - React/RCTBlob (0.55.4):
     - React/Core
-  - React/RCTCameraRoll (0.55.3):
+  - React/RCTCameraRoll (0.55.4):
     - React/Core
     - React/RCTImage
-  - React/RCTGeolocation (0.55.3):
+  - React/RCTGeolocation (0.55.4):
     - React/Core
-  - React/RCTImage (0.55.3):
+  - React/RCTImage (0.55.4):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.55.3):
+  - React/RCTLinkingIOS (0.55.4):
     - React/Core
-  - React/RCTNetwork (0.55.3):
+  - React/RCTNetwork (0.55.4):
     - React/Core
-  - React/RCTPushNotification (0.55.3):
+  - React/RCTPushNotification (0.55.4):
     - React/Core
-  - React/RCTSettings (0.55.3):
+  - React/RCTSettings (0.55.4):
     - React/Core
-  - React/RCTText (0.55.3):
+  - React/RCTText (0.55.4):
     - React/Core
-  - React/RCTVibration (0.55.3):
+  - React/RCTVibration (0.55.4):
     - React/Core
-  - React/RCTWebSocket (0.55.3):
+  - React/RCTWebSocket (0.55.4):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - React/tvOS (0.55.3):
+  - React/tvOS (0.55.4):
     - React/Core
   - RNI18n (2.0.12):
     - React
@@ -245,7 +239,8 @@ PODS:
     - React
   - RNVectorIcons (4.6.0):
     - React
-  - yoga (0.55.3.React)
+  - SSZipArchive (2.1.2)
+  - yoga (0.55.4.React)
 
 DEPENDENCIES:
   - AppCenter/Analytics (~> 1.6.0)
@@ -257,7 +252,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Fabric (~> 1.7.6)
   - Firebase/Auth
-  - Firebase/Core
+  - Firebase/Core (~> 4.13.0)
   - Firebase/Database
   - Firebase/DynamicLinks
   - Firebase/Firestore
@@ -302,6 +297,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
     - AppCenterReactNativeShared
+    - Base64
     - boost-for-react-native
     - BoringSSL
     - Crashlytics
@@ -326,9 +322,11 @@ SPEC REPOS:
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
     - GTMSessionFetcher
+    - JWT
     - leveldb-library
     - nanopb
     - Protobuf
+    - SSZipArchive
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -369,10 +367,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppCenter: 05e11ff99d3224131363abb61830172f5f28e53e
   AppCenterReactNativeShared: fac1cabd1f76cc2f7019a53a58eaae60734a68bd
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BoringSSL: 60dd24df4af296bf41d78e5841dbb95d75f88c0d
   BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
-  CodePush: af67b07310e4037ecd5c38f03c7a51c6350240b5
+  CodePush: f6b348759cdc42c734d9c3a46ceb2997c270b12e
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
@@ -398,6 +397,7 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: bb5fddf3424aa4fad74d76736578a79fe40e244e
   gRPC-RxLibrary: 26d53d1b1f306befd4ad4e15bd6de27839a82481
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  JWT: 6e7ec473b6febcb7498affc84f0e75d393914411
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
@@ -412,8 +412,9 @@ SPEC CHECKSUMS:
   RNShare: 80d4472ab25e77d9f824cb8d49d7e85af91c66e0
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
+  SSZipArchive: d4009d2ce5520a421f231fd97028cc0e2667eed8
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 363792780040e4450e252b593fdd2dd62a1febb0
+PODFILE CHECKSUM: 746cb2aeda0585f7f7fc7ef488ae61867fb11cd6
 
 COCOAPODS: 1.5.0
