@@ -8,7 +8,13 @@ import {
 } from 'react-native-zss-rich-text-editor';
 import { NavigationInjectedProps } from 'react-navigation';
 import { Text } from '../components';
-import { IExtras, INoteStore, NoteStatus } from '../types';
+import {
+  EditNoteParams,
+  GenericInjectedNavigationProp,
+  IExtras,
+  INoteStore,
+  NoteStatus,
+} from '../types';
 import { responsiveHeight } from '../utils';
 
 const styles = StyleSheet.create({
@@ -20,29 +26,35 @@ const styles = StyleSheet.create({
   },
 });
 
-interface NewNoteScreenProps extends NavigationInjectedProps {
+interface EditNoteScreenProps
+  extends GenericInjectedNavigationProp<EditNoteParams> {
   extras: IExtras;
 }
 
-interface NewNoteScreenState {
+interface EditNoteScreenState {
   noteStore: INoteStore;
   editorInitialized: boolean;
 }
 
 @inject('extras')
 @observer
-export default class NewNoteScreen extends Component<
-  NewNoteScreenProps,
-  NewNoteScreenState
+class EditNoteScreen extends Component<
+  EditNoteScreenProps,
+  EditNoteScreenState
 > {
   public static navigationOptions = {
     title: 'Add Note',
   };
 
-  constructor(props: NewNoteScreenProps) {
+  constructor(props: EditNoteScreenProps) {
     super(props);
+    const { extras, navigation } = this.props;
+    const note = navigation.getParam('note');
+    const noteStore: INoteStore = note
+      ? extras.editNote(note)
+      : extras.createNote();
     this.state = {
-      noteStore: this.props.extras.createNote(),
+      noteStore,
       editorInitialized: false,
     };
   }
@@ -103,5 +115,5 @@ export default class NewNoteScreen extends Component<
     );
   }
 }
-//
-// export default NewNoteScreen;
+
+export default EditNoteScreen;

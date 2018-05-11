@@ -16,19 +16,19 @@ const styles = StyleSheet.create({
   },
 });
 
-interface HomeScreenProps extends NavigationInjectedProps {
+interface LatestScreenProps extends NavigationInjectedProps {
   authStore: AuthStore;
 }
 
 @inject('authStore')
-class HomeScreen extends Component<HomeScreenProps> {
+class LatestScreen extends Component<LatestScreenProps> {
   public static navigationOptions = {
     // title: 'Welcome to the app!',
     header: null,
   };
 
   private onPressNewNote = () => {
-    this.props.navigation.navigate(screenRoutes.NewNote);
+    this.props.navigation.navigate(screenRoutes.EditNote, { type: 'new' });
   };
 
   public render() {
@@ -61,4 +61,4 @@ class HomeScreen extends Component<HomeScreenProps> {
   };
 }
 
-export default HomeScreen;
+export default LatestScreen;

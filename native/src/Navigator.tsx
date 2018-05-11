@@ -14,8 +14,8 @@ import {
 import { screenRoutes, stackRoutes } from './constants';
 import {
   AppLoadingScreen,
-  HomeScreen,
-  NewNoteScreen,
+  EditNoteScreen,
+  LatestScreen,
   ProfileScreen,
   ShareScreen,
   SignInScreen,
@@ -34,15 +34,26 @@ const defaultNavigatorOptions: StackNavigatorConfig = {
     backgroundColor: 'white',
   },
 };
-const HomeStack = StackNavigator(
+const LatestStack = StackNavigator(
   {
-    [screenRoutes.Home]: HomeScreen,
-    [screenRoutes.NewNote]: {
-      screen: NewNoteScreen,
+    [screenRoutes.Latest]: LatestScreen,
+  },
+  {
+    cardStyle: {
+      backgroundColor: 'white',
+    },
+  },
+);
+
+const EditNoteStack = StackNavigator(
+  {
+    [screenRoutes.EditNote]: {
+      screen: EditNoteScreen,
       navigationOptions: { headerMode: 'float' },
     },
   },
   {
+    headerMode,
     cardStyle: {
       backgroundColor: 'white',
     },
@@ -66,7 +77,7 @@ const ProfileStack = StackNavigator(
 const HomeTabs = TabNavigator(
   {
     Home: {
-      screen: HomeStack,
+      screen: LatestStack,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" color={tintColor as string} size={25} />
@@ -118,12 +129,23 @@ const HomeTabs = TabNavigator(
 //   </HomeTabs>
 // );
 
-const HomeDrawer = DrawerNavigator(
+const MainStack = StackNavigator(
   {
-    HomeDrawer: { screen: HomeTabs },
+    MainTabs: { screen: HomeTabs },
+    EditNote: { screen: EditNoteStack },
   },
   {
-    initialRouteName: 'HomeDrawer',
+    initialRouteName: 'MainTabs',
+  },
+);
+
+const HomeDrawer = DrawerNavigator(
+  {
+    MainStack: { screen: MainStack },
+    // EditNote: { screen: EditNoteStack },
+  },
+  {
+    initialRouteName: 'MainStack',
     navigationOptions: {
       gestureResponseDistance: { horizontal: 100, vertical: 100 },
       gesturesEnabled: true,

@@ -1,7 +1,14 @@
 import { formatDistance } from 'date-fns';
 import React, { Component } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
+import { screenRoutes } from '../constants';
 import { NotesStore } from '../stores';
 import { Theme } from '../theme/components/Theme';
 import { NoteClient, UserAccountClient } from '../types';
@@ -82,12 +89,19 @@ export default class Note extends Component<NoteProps, NoteState> {
     this.unsubscribeToProfile();
   }
 
+  private editNote = () => {
+    this.props.navigation.navigate(screenRoutes.EditNote, {
+      type: 'edit',
+      note: this.props.note,
+    });
+  };
+
   public render() {
     const { note, userAccount } = this.state;
     const contentStyle = [styles.content];
     const textStyle = [styles.text];
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.editNote}>
         <View style={contentStyle}>
           <View style={styles.header}>
             <Avatar {...userAccount.image} />
@@ -102,7 +116,7 @@ export default class Note extends Component<NoteProps, NoteState> {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

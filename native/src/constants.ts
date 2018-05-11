@@ -6,12 +6,12 @@ export const collection = {
 
 export const screenRoutes = {
   ProfileScreen: 'Profile',
-  Home: 'Home',
+  Latest: 'Home',
   Tabs: 'Tabs',
   SignIn: 'Sign In',
   AppLoading: 'App Loading',
   Share: 'Share',
-  NewNote: 'New Note',
+  EditNote: 'New Note',
 };
 
 export const stackRoutes = {

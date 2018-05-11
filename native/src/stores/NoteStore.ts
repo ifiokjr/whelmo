@@ -1,6 +1,5 @@
 import { action, observable, runInAction } from 'mobx';
 import firebase, { RNFirebase } from 'react-native-firebase';
-import { RootStore } from '.';
 import { collection } from '../constants';
 import { INoteStore, IRootStore, NoteClient, NoteServer } from '../types';
 import { BaseStore } from './BaseStore';
@@ -32,7 +31,7 @@ class NoteStore extends BaseStore implements INoteStore {
     super(rootStore);
     if (note) {
       this.id = note.id;
-      this.updateNote(note);
+      this.note = note;
       this.retrieveNoteDocument().catch();
     } else {
       this.createNote().catch();
@@ -58,11 +57,15 @@ class NoteStore extends BaseStore implements INoteStore {
     }
   }
 
-  private async retrieveNoteDocument() {
+  @action
+  public async retrieveNoteDocument() {
     try {
-      this.noteDoc = await this.collection.doc(this.note.id);
+      this.noteDoc = await this.collection.doc(this.id);
       const noteSnap = await this.noteDoc.get();
-      this.note = transformSnapToNote(noteSnap);
+      runInAction(() => {
+        this.note = transformSnapToNote(noteSnap);
+        this.loading = false;
+      });
     } catch (e) {
       // Do something soon
     }
