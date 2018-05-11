@@ -1,8 +1,8 @@
+import { Omit } from '..';
 import { ActionTypes } from '../actions';
-import { ITimeStamp } from './base';
+import { BaseModelClient, BaseModelServer } from './base';
 
-export interface Action extends ITimeStamp {
-  id: string;
+export interface ActionServer extends BaseModelServer {
   type: ActionTypes;
   /**
    * Is the action still active.
@@ -16,3 +16,7 @@ export interface Action extends ITimeStamp {
 
   targetId: string;
 }
+
+export interface ActionClient
+  extends Omit<ActionServer, keyof BaseModelServer>,
+    BaseModelClient {}

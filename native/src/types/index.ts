@@ -1,17 +1,5 @@
 export { ActionTypes } from './actions';
 export {
-  Action,
-  Attachment,
-  AttachmentType,
-  INote,
-  IUserAccount,
-  NotificationSetting,
-  NotificationTypes,
-  INotePopulated,
-  Name,
-} from './models';
-export { IAuthStore, IRootStore, UserType } from './stores';
-export {
   DeepPartial,
   Diff,
   Evolver,
@@ -20,3 +8,29 @@ export {
   Omit,
   Same,
 } from './general';
+export {
+  ActionClient,
+  Attachment,
+  AttachmentType,
+  Name,
+  NoteClient,
+  NotificationSetting,
+  NotificationTypes,
+  PopulatedNotedClient,
+  UserAccountClient,
+  UserAccountServer,
+  NoteStatus,
+  ActionServer,
+  NoteServer,
+} from './models';
+export {
+  IAuthStore,
+  IRootStore,
+  UserType,
+  IBaseStore,
+  INotesStore,
+  INoteStore,
+  IUserAccountStore,
+  UserAccountObject,
+  IExtras,
+} from './stores';

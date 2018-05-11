@@ -1,35 +1,53 @@
 import { first, last, orderBy, uniq, uniqBy } from 'lodash';
 import { action, computed, observable } from 'mobx';
+import remoteDev from 'mobx-remotedev';
 import firebase, { RNFirebase } from 'react-native-firebase';
 import { collection } from '../constants';
-import { INote, INotePopulated, IRootStore, IUserAccount } from '../types';
+import {
+  INotesStore,
+  IRootStore,
+  NoteClient,
+  PopulatedNotedClient,
+  UserAccountClient,
+} from '../types';
 import { BaseStore } from './BaseStore';
+import {
+  transformServerUserAccountToClient,
+  transformSnapToNote,
+  transformSnapToUserAccount,
+} from './helpers';
 import { DEFAULT_USER_ACCOUNT } from './UserAccountStore';
 
 type QueryIdentifier = 'user' | 'all';
 const DEFAULT_PAGE_SIZE = 5;
 
-interface IUserAccountObject {
-  [uid: string]: IUserAccount;
+interface UserAccountObject {
+  [uid: string]: UserAccountClient;
 }
 
 const firestore = firebase.firestore();
 
-class NotesStore extends BaseStore {
+@remoteDev({
+  name: 'NotesStore',
+  remote: false,
+})
+class NotesStore extends BaseStore implements INotesStore {
   private queryIdentifier: QueryIdentifier;
   private query!: RNFirebase.firestore.Query;
 
   private cursor?: RNFirebase.firestore.DocumentSnapshot;
   private lastKnownEntry?: RNFirebase.firestore.DocumentSnapshot;
 
-  @observable private _notes: INotePopulated[] = [];
+  @observable private _notes: PopulatedNotedClient[] = [];
   @observable public loading = false;
-  public userAccounts: IUserAccountObject = {};
+  public userAccounts: UserAccountObject = {};
+
   @computed
-  get notes(): INotePopulated[] {
+  get notes(): PopulatedNotedClient[] {
     return this._notes;
   }
-  set notes(notes: INotePopulated[]) {
+
+  set notes(notes: PopulatedNotedClient[]) {
     this._notes = notes;
   }
 
@@ -39,10 +57,11 @@ class NotesStore extends BaseStore {
   }
 
   private setQuery = () => {
-    if (this.queryIdentifier === 'user') {
+    const { user } = this.stores.authStore;
+    if (this.queryIdentifier === 'user' && user) {
       this.query = firestore
         .collection(collection.NOTES)
-        .where('uid', '==', this.stores.authStore.user)
+        .where('uid', '==', user.uid)
         .orderBy('timestamp', 'desc');
     } else {
       this.query = firestore
@@ -61,7 +80,9 @@ class NotesStore extends BaseStore {
     await this.loadNotes();
   }
 
-  public async joinProfiles(notes: INote[]): Promise<INotePopulated[]> {
+  public async joinProfiles(
+    notes: NoteClient[],
+  ): Promise<PopulatedNotedClient[]> {
     const uids = notes
       .map(note => note.ownerId)
       .filter(uid => this.userAccounts[uid] === undefined);
@@ -72,9 +93,12 @@ class NotesStore extends BaseStore {
             .collection('users')
             .doc(uid)
             .get();
-          this.userAccounts[uid] = userAccountDoc.data() as IUserAccount;
+          this.userAccounts[uid] = transformSnapToUserAccount(userAccountDoc);
         } catch (e) {
-          this.userAccounts[uid] = DEFAULT_USER_ACCOUNT;
+          this.userAccounts[uid] = transformServerUserAccountToClient(
+            uid,
+            DEFAULT_USER_ACCOUNT,
+          );
         }
       })(),
     );
@@ -91,9 +115,9 @@ class NotesStore extends BaseStore {
       if (snap.docs.length === 0) {
         return;
       }
-      const notes: INote[] = [];
+      const notes: NoteClient[] = [];
       snap.forEach(noteDoc => {
-        notes.push(this.tranformSnapToNote(noteDoc));
+        notes.push(transformSnapToNote(noteDoc));
       });
       const populatedNotes = await this.joinProfiles(notes);
       this.addToFeed(populatedNotes);
@@ -115,21 +139,21 @@ class NotesStore extends BaseStore {
       }
       return;
     }
-    const notes: INote[] = [];
+    const notes: NoteClient[] = [];
     snap.forEach(noteDoc => {
-      notes.push(this.tranformSnapToNote(noteDoc));
+      notes.push(transformSnapToNote(noteDoc));
     });
     const notesFeed = await this.joinProfiles(notes);
     if (!this.notes) {
       this.notes = [];
-      this.lastKnownEntry = snap.docs[0];
+      this.lastKnownEntry = first(snap.docs);
     }
     this.addToFeed(notesFeed);
     this.cursor = last(snap.docs);
     this.setLoading(false);
   }
 
-  public addToFeed(entries: INotePopulated[]) {
+  public addToFeed(entries: PopulatedNotedClient[]) {
     const notes = uniqBy(
       [...this.notes.slice(), ...entries],
       entry => entry.id,
@@ -137,27 +161,12 @@ class NotesStore extends BaseStore {
     this.notes = orderBy(notes, entry => entry.updatedAt, ['desc']);
   }
 
-  private tranformSnapToNote(
-    noteDoc: RNFirebase.firestore.DocumentSnapshot,
-  ): INote {
-    return { ...(noteDoc.data() as INote), id: noteDoc.id as string };
-  }
-
-  private tranformSnapToUserAccount(
-    userAccountDoc: RNFirebase.firestore.DocumentSnapshot,
-  ): IUserAccount {
-    return {
-      ...(userAccountDoc.data() as IUserAccount),
-      id: userAccountDoc.id as string,
-    };
-  }
-
-  public subscribeToNote(id: string, callback: (note: INote) => void) {
+  public subscribeToNote(id: string, callback: (note: NoteClient) => void) {
     return firestore
       .collection(collection.NOTES)
       .doc(id)
       .onSnapshot(async noteDoc => {
-        const note = this.tranformSnapToNote(noteDoc);
+        const note = transformSnapToNote(noteDoc);
         callback(note);
         this.notes.forEach((entry, index) => {
           if (entry.id === note.id) {
@@ -169,15 +178,15 @@ class NotesStore extends BaseStore {
 
   public subscribeToUserAccount(
     id: string,
-    callback: (user: IUserAccount) => void,
+    callback: (user: UserAccountClient) => void,
   ) {
     return firestore
       .collection(collection.USERS)
       .doc(id)
       .onSnapshot(async userAccountDoc => {
         const userAccount = userAccountDoc.exists
-          ? this.tranformSnapToUserAccount(userAccountDoc)
-          : DEFAULT_USER_ACCOUNT;
+          ? transformSnapToUserAccount(userAccountDoc)
+          : transformServerUserAccountToClient(id, DEFAULT_USER_ACCOUNT);
         callback(userAccount);
         this.notes.forEach((entry, index) => {
           if (entry.ownerId === id) {

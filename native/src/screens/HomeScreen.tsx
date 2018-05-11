@@ -23,11 +23,12 @@ interface HomeScreenProps extends NavigationInjectedProps {
 @inject('authStore')
 class HomeScreen extends Component<HomeScreenProps> {
   public static navigationOptions = {
-    title: 'Welcome to the app!',
+    // title: 'Welcome to the app!',
+    header: null,
   };
 
   private onPressNewNote = () => {
-    this.props.navigation.navigate(screenRoutes.ProfileScreen);
+    this.props.navigation.navigate(screenRoutes.NewNote);
   };
 
   public render() {

@@ -10,7 +10,7 @@ import getTheme from './theme/components';
 import variables from './theme/variables/commonColor';
 import { noop } from './utils';
 
-configure({ enforceActions: 'strict' });
+configure({ enforceActions: true });
 
 @CodePush()
 export default class App extends React.Component {

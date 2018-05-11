@@ -26,6 +26,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.codepush.react.ReactInstanceHolder;
+import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -108,7 +110,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
                 new RNFirebaseNotificationsPackage(),
                 new RNFirebasePerformancePackage(),
                 new RNFirebaseRemoteConfigPackage(),
-                new RNFirebaseStoragePackage()
+                new RNFirebaseStoragePackage(),
+                new WebViewBridgePackage()
             );
         }
 

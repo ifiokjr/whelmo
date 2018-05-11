@@ -2,15 +2,16 @@ import { action, observable } from 'mobx';
 import firebase, { RNFirebase } from 'react-native-firebase';
 import { IAuthStore, IRootStore } from '../types';
 import { noop } from '../utils';
+import { BaseStore } from './BaseStore';
 
 const auth = firebase.auth();
 
-class AuthStore implements IAuthStore {
-  public stores: IRootStore;
+class AuthStore extends BaseStore implements IAuthStore {
   @observable public user = auth.currentUser;
   @observable public loading = false;
 
   constructor(stores: IRootStore) {
+    super(stores);
     this.stores = stores;
   }
 

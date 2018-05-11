@@ -1,4 +1,5 @@
-import { ITimeStamp } from './base';
+import { Omit } from '../general';
+import { BaseModelClient, BaseModelServer } from './base';
 
 export type NotificationTypes = 'email' | 'sms' | 'push';
 
@@ -14,8 +15,7 @@ export interface Name {
   display: string;
 }
 
-export interface IUserAccount extends ITimeStamp {
-  id: string;
+export interface UserAccountServer extends BaseModelServer {
   username: string;
   name: Name;
   followers: string[];
@@ -31,3 +31,6 @@ export interface IUserAccount extends ITimeStamp {
     preview: string;
   };
 }
+export interface UserAccountClient
+  extends Omit<UserAccountServer, keyof BaseModelServer>,
+    BaseModelClient {}

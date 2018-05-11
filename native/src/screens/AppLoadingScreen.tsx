@@ -5,8 +5,7 @@ import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationInjectedProps } from 'react-navigation';
 import { screenRoutes, stackRoutes } from '../constants';
-import stores, { AuthStore } from '../stores';
-import { UserType } from '../types';
+import { IAuthStore, IExtras, UserType } from '../types';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,10 +16,11 @@ const styles = StyleSheet.create({
 });
 
 interface AppLoadingScreenProps extends NavigationInjectedProps {
-  authStore: AuthStore;
+  authStore: IAuthStore;
+  extras: IExtras;
 }
 
-@inject('authStore')
+@inject('authStore', 'extras')
 @observer
 class AppLoadingScreen extends Component<AppLoadingScreenProps> {
   public componentDidMount() {
@@ -29,7 +29,7 @@ class AppLoadingScreen extends Component<AppLoadingScreenProps> {
 
   private async navigate(user: UserType) {
     if (user) {
-      await stores.initAfterAuth();
+      await this.props.extras.initAfterAuth();
       this.props.navigation.navigate(screenRoutes.Tabs);
     } else {
       this.props.navigation.navigate(stackRoutes.Auth);

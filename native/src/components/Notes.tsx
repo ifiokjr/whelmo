@@ -16,14 +16,14 @@ import { Theme } from '../theme/components';
 import FirstNote from './FirstNote';
 import Note from './Note';
 
-import { INotePopulated } from '../types';
+import { PopulatedNotedClient } from '../types';
 
 interface NotesProps extends NavigationInjectedProps {
   notesStore: NotesStore;
   onScroll?: ScrollViewProperties['onScroll'];
   bounce?: boolean;
   ListHeaderComponent: FlatListProperties<
-    INotePopulated
+    PopulatedNotedClient
   >['ListHeaderComponent'];
 }
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
 @observer
 class Notes extends Component<NotesProps> {
-  public keyExtractor = (item: INotePopulated): string => {
+  public keyExtractor = (item: PopulatedNotedClient): string => {
     return item.id;
   };
 
@@ -46,7 +46,9 @@ class Notes extends Component<NotesProps> {
     this.props.notesStore.loadNotes();
   };
 
-  public renderItem: ListRenderItem<INotePopulated> = ({ item: note }) => {
+  public renderItem: ListRenderItem<PopulatedNotedClient> = ({
+    item: note,
+  }) => {
     const { navigation, notesStore } = this.props;
     return (
       <View style={styles.note}>

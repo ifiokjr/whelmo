@@ -6,6 +6,7 @@ import {
   HeaderMode,
   NavigationTabScreenOptions,
   StackNavigator,
+  StackNavigatorConfig,
   SwitchNavigator,
   TabBarBottom,
   TabNavigator,
@@ -14,6 +15,7 @@ import { screenRoutes, stackRoutes } from './constants';
 import {
   AppLoadingScreen,
   HomeScreen,
+  NewNoteScreen,
   ProfileScreen,
   ShareScreen,
   SignInScreen,
@@ -23,15 +25,28 @@ import {
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 const headerMode: HeaderMode = 'none';
-const defaultNavigatorOptions = {
+const defaultNavigatorOptions: StackNavigatorConfig = {
   headerMode,
+  navigationOptions: {
+    gesturesEnabled: false,
+  },
   cardStyle: {
     backgroundColor: 'white',
   },
 };
 const HomeStack = StackNavigator(
-  { [screenRoutes.Home]: HomeScreen },
-  defaultNavigatorOptions,
+  {
+    [screenRoutes.Home]: HomeScreen,
+    [screenRoutes.NewNote]: {
+      screen: NewNoteScreen,
+      navigationOptions: { headerMode: 'float' },
+    },
+  },
+  {
+    cardStyle: {
+      backgroundColor: 'white',
+    },
+  },
 );
 const AuthStack = StackNavigator(
   { [screenRoutes.SignIn]: SignInScreen },
@@ -109,6 +124,10 @@ const HomeDrawer = DrawerNavigator(
   },
   {
     initialRouteName: 'HomeDrawer',
+    navigationOptions: {
+      gestureResponseDistance: { horizontal: 100, vertical: 100 },
+      gesturesEnabled: true,
+    },
   },
 );
 

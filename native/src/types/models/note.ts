@@ -1,5 +1,6 @@
-import { ITimeStamp } from './base';
-import { IUserAccount } from './user';
+import { Omit } from '..';
+import { BaseModelClient, BaseModelServer } from './base';
+import { UserAccountClient } from './user';
 
 export enum AttachmentType {
   URL = 'url',
@@ -11,6 +12,30 @@ export interface Attachment {
   type: 'url' | 'image' | 'note';
 }
 
+export type NoteStatus = 'draft' | 'published';
+
+export interface NoteServer extends BaseModelServer {
+  /**
+   * Notes can be standalone or can the attached to a url, another note an object within a note, an image, a URL etc...
+   */
+  attachedTo: string;
+  title: string;
+  /**
+   * The text in the note.
+   */
+  message: string;
+
+  /**
+   * Whether the note has been published or not.
+   */
+  status: NoteStatus;
+
+  /**
+   * The uid of the notes creator
+   */
+  ownerId: string;
+}
+
 /**
  * A note is the fundamental building block of Whelmo. Everything is done through notes. Notes allow a user to augment content around the web on any public webpage.
  * They serve as annotations and a data layer that sits above the web, and eventually everything around this.
@@ -19,24 +44,10 @@ export interface Attachment {
  *
  * TODO: How do questions fit into this. If I see something I'm unsure of how do I ask the community for help in answering this. Are questions fundamentally different from notes or are they just an augmentation on top of notes
  */
-export interface INote extends ITimeStamp {
-  id: string;
-  /**
-   * Notes can be standalone or can the attached to a url, another note an object within a note, an image, a URL etc...
-   */
-  attachedTo: string;
+export interface NoteClient
+  extends Omit<NoteServer, keyof BaseModelServer>,
+    BaseModelClient {}
 
-  /**
-   * The text in the note.
-   */
-  message: string;
-
-  /**
-   * The uid of the notes creator
-   */
-  ownerId: string;
-}
-
-export interface INotePopulated extends INote {
-  user: IUserAccount;
+export interface PopulatedNotedClient extends NoteClient {
+  user: UserAccountClient;
 }

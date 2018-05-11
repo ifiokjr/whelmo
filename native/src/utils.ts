@@ -3,6 +3,8 @@ import { Dimensions, Platform, PlatformIOSStatic } from 'react-native';
 import RNFetch from 'react-native-fetch-blob';
 import { NavigationState } from 'react-navigation';
 
+const { width, height } = Dimensions.get('window');
+
 /**
  * Allows us to check the current route name from the navigation state.
  * @param navigationState
@@ -37,8 +39,6 @@ export const isElectron =
   navigator.userAgent.indexOf('Electron') >= 0;
 
 export const isWeb = !isElectron && !isReactNative;
-
-const { width, height } = Dimensions.get('window');
 
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
@@ -78,9 +78,35 @@ export async function downloadAndCacheImage(url: string): Promise<string> {
       fileCache: true,
       appendExt: ext,
     }).fetch('GET', url, {});
-    console.log(BASE_DIR, url, res.path());
+    // console.log(BASE_DIR, url, res.path());
     return isIOS ? res.path() : `file://${res.path()}`;
   } catch (e) {
     return '';
   }
 }
+
+/**
+ * Generates a responsive height in pixels from provided percentage.
+ *
+ * @param {Number} percent - percentage of device height
+ * @return {Number}
+ */
+export const responsiveHeight = (percent?: number) => {
+  if (percent === 100 || !isFinite(percent) || !percent) {
+    return height;
+  }
+  return Math.round(height * (percent / 100));
+};
+
+/**
+ * Generates a responsive width in pixels from provided percentage.
+ *
+ * @param {Number} w - percentage of device width
+ * @return {Number}
+ */
+export const responsiveWidth = (percent?: number) => {
+  if (percent === 100 || !isFinite(percent) || !percent) {
+    return width;
+  }
+  return Math.round(width * (percent / 100));
+};

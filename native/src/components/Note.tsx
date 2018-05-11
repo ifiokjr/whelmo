@@ -4,19 +4,19 @@ import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { NotesStore } from '../stores';
 import { Theme } from '../theme/components/Theme';
-import { INote, IUserAccount } from '../types';
+import { NoteClient, UserAccountClient } from '../types';
 import Avatar from './Avatar';
 import Text from './Text';
 
 interface NoteProps extends NavigationInjectedProps {
-  note: INote;
-  userAccount: IUserAccount;
+  note: NoteClient;
+  userAccount: UserAccountClient;
   notesStore: NotesStore;
 }
 
 interface NoteState {
-  note: INote;
-  userAccount: IUserAccount;
+  note: NoteClient;
+  userAccount: UserAccountClient;
 }
 
 const { width } = Dimensions.get('window');

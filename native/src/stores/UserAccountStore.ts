@@ -2,15 +2,13 @@ import { computed, observable } from 'mobx';
 import config from 'react-native-config';
 import firebase from 'react-native-firebase';
 import { collection } from '../constants';
-import { IUserAccount } from '../types';
+import { UserAccountClient, UserAccountServer } from '../types';
 import { BaseStore } from './BaseStore';
+import { createServerUserAccount } from './helpers';
 
 const firestore = firebase.firestore();
 
-export const DEFAULT_USER_ACCOUNT: IUserAccount = {
-  id: 'DEFAULT_USER_ID',
-  createdAt: '',
-  updatedAt: '',
+export const DEFAULT_USER_ACCOUNT: UserAccountServer = {
   username: '',
   name: {
     first: 'J',
@@ -34,22 +32,15 @@ export const DEFAULT_USER_ACCOUNT: IUserAccount = {
   },
 };
 
-export const createUser = (id: string, data: IUserAccount) => ({
-  ...data,
-  id,
-  updatedAt: firebase.database.ServerValue.TIMESTAMP,
-  createdAt: firebase.database.ServerValue.TIMESTAMP,
-});
-
 class UserAccountStore extends BaseStore {
-  @observable private _userAccount!: IUserAccount;
+  @observable private _userAccount!: UserAccountClient;
 
   @computed
-  get userAccount(): IUserAccount {
+  get userAccount(): UserAccountClient {
     return this._userAccount;
   }
 
-  set userAccount(userAccount: IUserAccount) {
+  set userAccount(userAccount: UserAccountClient) {
     this._userAccount = userAccount;
   }
 
@@ -60,14 +51,14 @@ class UserAccountStore extends BaseStore {
     }
     const { uid } = user;
     const docRef = firestore.collection(collection.USERS).doc(uid);
-    docRef.onSnapshot(async snap => {
-      if (snap.exists) {
-        this.userAccount = snap.data() as IUserAccount;
+    docRef.onSnapshot(async userAccountSnap => {
+      if (userAccountSnap.exists) {
+        this.userAccount = userAccountSnap.data() as UserAccountClient;
       } else {
-        const newUserAccount = createUser(uid, DEFAULT_USER_ACCOUNT);
+        const newUserAccount = createServerUserAccount(DEFAULT_USER_ACCOUNT);
         await docRef.set(newUserAccount);
         const userAccountSnapshot = await docRef.get();
-        this.userAccount = userAccountSnapshot.data() as IUserAccount;
+        this.userAccount = userAccountSnapshot.data() as UserAccountClient;
       }
     });
   };

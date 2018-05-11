@@ -14,7 +14,7 @@ import { NavigationInjectedProps } from 'react-navigation';
 import { Avatar, Notes, Text } from '../components';
 import { NotesStore, UserAccountStore } from '../stores';
 import { Theme } from '../theme/components';
-import { INotePopulated } from '../types';
+import { PopulatedNotedClient } from '../types';
 
 interface ProfileScreenProps extends NavigationInjectedProps {
   userAccountStore: UserAccountStore;
@@ -83,7 +83,7 @@ export default class ProfileScreen extends Component<ProfileScreenProps> {
     this.props.userNotesStore.loadNotes();
   };
 
-  public keyExtractor = (item: INotePopulated): string => {
+  public keyExtractor = (item: PopulatedNotedClient): string => {
     return item.id;
   };
 

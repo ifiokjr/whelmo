@@ -1,8 +1,16 @@
+export { ActionClient, ActionServer } from './action';
 export {
-  NotificationTypes,
-  IUserAccount,
-  NotificationSetting,
+  Attachment,
+  AttachmentType,
+  NoteClient,
+  NoteStatus,
+  PopulatedNotedClient,
+  NoteServer,
+} from './note';
+export {
   Name,
+  NotificationSetting,
+  NotificationTypes,
+  UserAccountClient,
+  UserAccountServer,
 } from './user';
-export { Action } from './action';
-export { Attachment, AttachmentType, INote, INotePopulated } from './note';

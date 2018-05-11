@@ -11,6 +11,7 @@ export const screenRoutes = {
   SignIn: 'Sign In',
   AppLoading: 'App Loading',
   Share: 'Share',
+  NewNote: 'New Note',
 };
 
 export const stackRoutes = {
