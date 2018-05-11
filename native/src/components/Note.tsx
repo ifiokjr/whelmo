@@ -92,13 +92,13 @@ export default class Note extends Component<NoteProps, NoteState> {
           <View style={styles.header}>
             <Avatar {...userAccount.image} />
             <View style={styles.metadata}>
-              <Text style={styles.name}>{userAccount.name}</Text>
-              <Text>{formatDistance(Date.now(), note.createdAt)}</Text>
+              <Text style={styles.name}>{userAccount.name.display}</Text>
+              <Text>{formatDistance(Date.now(), note.createdAt)} ago</Text>
             </View>
           </View>
           <View>
             <Text style={textStyle} gutterBottom={true}>
-              {note.message}
+              {note.title}
             </Text>
           </View>
         </View>

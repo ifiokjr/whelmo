@@ -57,8 +57,8 @@ export interface INotesStore extends IBaseStore {
   init(): Promise<void>;
   joinProfiles(notes: NoteClient[]): Promise<PopulatedNotedClient[]>;
   checkForNewEntriesInNotes(): Promise<void>;
-  loadNotes(): Promise<void>;
-  addToFeed(entries: PopulatedNotedClient[]): void;
+  loadOldNotes(): Promise<void>;
+  addToFeed(entries: PopulatedNotedClient[], isNew?: boolean): void;
   subscribeToNote(id: string, callback: (note: NoteClient) => void): void;
   subscribeToUserAccount(
     id: string,

@@ -34,8 +34,13 @@ const firestore = firebase.firestore();
 class NotesStore extends BaseStore implements INotesStore {
   private queryIdentifier: QueryIdentifier;
   private query!: RNFirebase.firestore.Query;
+  private stopListening?: () => void;
+  private stopListeningForNewNotes?: () => void;
+  private stopListeningForOldNotes?: () => void;
 
   private cursor?: RNFirebase.firestore.DocumentSnapshot;
+  private newNotesCursor?: RNFirebase.firestore.DocumentSnapshot;
+  private oldNotesCursor?: RNFirebase.firestore.DocumentSnapshot;
   private lastKnownEntry?: RNFirebase.firestore.DocumentSnapshot;
 
   @observable private _notes: PopulatedNotedClient[] = [];
@@ -58,15 +63,16 @@ class NotesStore extends BaseStore implements INotesStore {
 
   private setQuery = () => {
     const { user } = this.stores.authStore;
+    // console.log('the user is', user);
     if (this.queryIdentifier === 'user' && user) {
       this.query = firestore
         .collection(collection.NOTES)
-        .where('uid', '==', user.uid)
-        .orderBy('timestamp', 'desc');
+        .where('ownerId', '==', user.uid)
+        .orderBy('createdAt', 'desc');
     } else {
       this.query = firestore
         .collection(collection.NOTES)
-        .orderBy('timestamp', 'desc');
+        .orderBy('createdAt', 'desc');
     }
   };
 
@@ -77,7 +83,7 @@ class NotesStore extends BaseStore implements INotesStore {
 
   public async init() {
     this.setQuery();
-    await this.loadNotes();
+    await this.loadNewNotes();
   }
 
   public async joinProfiles(
@@ -89,11 +95,11 @@ class NotesStore extends BaseStore implements INotesStore {
     const userAccountPromises = uniq(uids).map(uid =>
       (async () => {
         try {
-          const userAccountDoc = await firestore
-            .collection('users')
+          const userAccountSnap = await firestore
+            .collection(collection.USERS)
             .doc(uid)
             .get();
-          this.userAccounts[uid] = transformSnapToUserAccount(userAccountDoc);
+          this.userAccounts[uid] = transformSnapToUserAccount(userAccountSnap);
         } catch (e) {
           this.userAccounts[uid] = transformServerUserAccountToClient(
             uid,
@@ -125,39 +131,90 @@ class NotesStore extends BaseStore implements INotesStore {
     }
   }
 
-  public async loadNotes(): Promise<void> {
-    // eslint-disable-next-line prefer-destructuring
-    this.setLoading(true);
-    let query = this.query;
-    if (this.cursor) {
-      query = query.startAfter(this.cursor);
-    }
-    const snap = await query.limit(DEFAULT_PAGE_SIZE).get();
-    if (snap.docs.length === 0) {
-      if (!this.notes) {
-        this.notes = [];
-      }
-      return;
-    }
+  private handleNewNotesSnap = async (
+    snap: RNFirebase.firestore.QuerySnapshot,
+  ) => {
     const notes: NoteClient[] = [];
-    snap.forEach(noteDoc => {
-      notes.push(transformSnapToNote(noteDoc));
+    snap.forEach(noteSnap => {
+      notes.push(transformSnapToNote(noteSnap));
     });
-    const notesFeed = await this.joinProfiles(notes);
-    if (!this.notes) {
-      this.notes = [];
-      this.lastKnownEntry = first(snap.docs);
+    const newNotesFeed = await this.joinProfiles(notes);
+    this.newNotesCursor = first(snap.docs);
+    this.addToFeed(newNotesFeed, true);
+    if (!this.notes.length) {
+      this.oldNotesCursor = last(snap.docs);
     }
-    this.addToFeed(notesFeed);
-    this.cursor = last(snap.docs);
     this.setLoading(false);
+  };
+
+  private listenForNewNotes = async () => {
+    let query = this.query;
+
+    if (this.newNotesCursor) {
+      query = this.query.endBefore(this.newNotesCursor);
+    }
+    this.stopListeningForNewNotes = query
+      .limit(DEFAULT_PAGE_SIZE)
+      .onSnapshot(async snap => {
+        if (snap.docs.length === 0) {
+          this.setLoading(false);
+          return;
+        }
+        await this.handleNewNotesSnap(snap);
+        if (this.stopListeningForNewNotes) {
+          this.stopListeningForNewNotes();
+          await this.listenForNewNotes();
+        }
+      });
+  };
+
+  public async loadNewNotes(): Promise<void> {
+    if (this.stopListeningForNewNotes) {
+      this.stopListeningForNewNotes();
+    }
+
+    this.setLoading(true);
+    await this.listenForNewNotes();
   }
 
-  public addToFeed(entries: PopulatedNotedClient[]) {
-    const notes = uniqBy(
-      [...this.notes.slice(), ...entries],
-      entry => entry.id,
-    );
+  public async loadOldNotes(): Promise<void> {
+    // eslint-disable-next-line prefer-destructuring
+    if (this.stopListeningForOldNotes) {
+      this.stopListeningForOldNotes();
+    }
+    this.setLoading(true);
+    let query = this.query;
+    if (this.oldNotesCursor) {
+      query = query.startAfter(this.oldNotesCursor);
+    }
+
+    this.stopListeningForOldNotes = await query
+      .limit(DEFAULT_PAGE_SIZE)
+      .onSnapshot(async snap => {
+        if (snap.docs.length === 0) {
+          this.setLoading(false);
+          return;
+        }
+        const notes: NoteClient[] = [];
+        snap.forEach(noteDoc => {
+          notes.push(transformSnapToNote(noteDoc));
+        });
+        const notesFeed = await this.joinProfiles(notes);
+        if (!this.notes.length) {
+          this.newNotesCursor = first(snap.docs);
+        }
+        this.addToFeed(notesFeed);
+        this.oldNotesCursor = last(snap.docs);
+        this.setLoading(false);
+        // stopListening();
+      });
+  }
+
+  public addToFeed(entries: PopulatedNotedClient[], isNew?: boolean) {
+    const arr = isNew
+      ? [...entries, ...this.notes]
+      : [...this.notes, ...entries];
+    const notes = uniqBy(arr, entry => entry.id);
     this.notes = orderBy(notes, entry => entry.updatedAt, ['desc']);
   }
 

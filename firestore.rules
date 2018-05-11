@@ -8,10 +8,14 @@ service cloud.firestore {
       return request.resource.data.verified == resource.data.verified
         || (validUserCreate() && !(resource.data.keys().hasAll("verified")));
     }
-    match /user/{userId} {
+    match /users/{userId} {
       allow read: if request.auth != null;
-      allow create: if request.auth.id == userId && validUserCreate();
+      allow create: if request.auth.uid == userId && validUserCreate();
       allow update: if request.auth.uid == userId && validUserUpdate();
+    }
+    match /notes/{noteId} {
+      allow read, create;
+      allow update: if request.auth.uid == resource.data.ownerId;
     }
   }
 }

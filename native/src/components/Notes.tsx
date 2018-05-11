@@ -43,7 +43,7 @@ class Notes extends Component<NotesProps> {
   };
 
   public loadMore = () => {
-    this.props.notesStore.loadNotes();
+    this.props.notesStore.loadOldNotes();
   };
 
   public renderItem: ListRenderItem<PopulatedNotedClient> = ({

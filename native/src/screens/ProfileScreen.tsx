@@ -79,10 +79,6 @@ export default class ProfileScreen extends Component<ProfileScreenProps> {
     this.props.navigation.navigate('Settings', { userAccount });
   };
 
-  public loadMore = () => {
-    this.props.userNotesStore.loadNotes();
-  };
-
   public keyExtractor = (item: PopulatedNotedClient): string => {
     return item.id;
   };
