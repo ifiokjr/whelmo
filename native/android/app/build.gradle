@@ -97,6 +97,19 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+preBuild.doFirst { 
+    assert rootProject.file("keystore.properties").exists() 
+}
+
+// ext.loadKeystoreProperties = { -> 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// }
+
+// loadKeystoreProperties()
+
+
 android {
     dexOptions {
         jumboMode true
@@ -125,19 +138,19 @@ android {
     }
     signingConfigs {
         release {
-            if (project.hasProperty('WHELMO_RELEASE_STORE_FILE')) {
+            if (keystoreProperties.containsKey('WHELMO_RELEASE_STORE_PASSWORD') && project.hasProperty('WHELMO_RELEASE_STORE_PASSWORD')) {
                 storeFile file(WHELMO_RELEASE_STORE_FILE)
-                storePassword WHELMO_RELEASE_STORE_PASSWORD
-                keyAlias WHELMO_RELEASE_KEY_ALIAS
-                keyPassword WHELMO_RELEASE_KEY_PASSWORD
+                storePassword keystoreProperties['WHELMO_RELEASE_STORE_PASSWORD']
+                keyAlias keystoreProperties['WHELMO_RELEASE_KEY_ALIAS']
+                keyPassword keystoreProperties['WHELMO_RELEASE_KEY_PASSWORD']
             }
         }
         staging {
-            if (project.hasProperty('WHELMO_STAGING_STORE_FILE')) {
+            if (keystoreProperties.containsKey('WHELMO_STAGING_STORE_PASSWORD') && project.hasProperty('WHELMO_STAGING_STORE_FILE')) {
                 storeFile file(WHELMO_STAGING_STORE_FILE)
-                storePassword WHELMO_STAGING_STORE_PASSWORD
-                keyAlias WHELMO_STAGING_KEY_ALIAS
-                keyPassword WHELMO_STAGING_KEY_PASSWORD
+                storePassword keystoreProperties['WHELMO_STAGING_STORE_PASSWORD']
+                keyAlias keystoreProperties['WHELMO_STAGING_KEY_ALIAS']
+                keyPassword keystoreProperties['WHELMO_STAGING_KEY_PASSWORD']
             }
         }
     }
