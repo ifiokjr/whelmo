@@ -49,7 +49,6 @@ const EditNoteStack = StackNavigator(
   {
     [screenRoutes.EditNote]: {
       screen: EditNoteScreen,
-      navigationOptions: { headerMode: 'float' },
     },
   },
   {
@@ -82,6 +81,7 @@ const HomeTabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" color={tintColor as string} size={25} />
         ),
+        header: null,
       } as NavigationTabScreenOptions,
     },
     Share: {
@@ -90,6 +90,7 @@ const HomeTabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="trending-up" color={tintColor as string} size={25} />
         ),
+        header: null,
       } as NavigationTabScreenOptions,
     },
     Profile: {
@@ -98,6 +99,7 @@ const HomeTabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="user" color={tintColor as string} size={25} />
         ),
+        header: null,
       } as NavigationTabScreenOptions,
     },
   },

@@ -60,6 +60,7 @@
     "react-native-firebase": "4.1.0",
     "react-native-gesture-handler": "1.0.0-alpha.43",
     "react-native-google-analytics-bridge": "5.6.3",
+    "react-native-htmlview": "^0.12.1",
     "react-native-i18n": "2.0.12",
     "react-native-indicators": "^0.13.0",
     "react-native-keyboard-manager": "4.0.13-7",
